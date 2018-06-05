@@ -106,6 +106,12 @@ git commit -am  "<commit message>"
 git stash save --keep-index
 git stash drop
 
+#revert
+git revert -m 1 <merge-commit>
+---or just
+git revert <commit-of-first-revert>
+
+
 #switch branch
 git checkout branch_name_here
 
