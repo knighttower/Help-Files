@@ -639,4 +639,96 @@ _ShowTooltipForUnpinnedApp(windowTitle) {
     _ShowTooltip("App """ . _TruncateString(windowTitle, 30) . """ unpinned.")
 }
 
-#Include, %A_ScriptDir%\libraries\setMyHomeWorkDesk.ahk
+;------------------------CUSTOM CODE----------
+
+
+
+_program(program:="", cmd:="") {
+    if (program <> "") { 
+        if (FileExist(program)) {
+            Run %program%  %cmd%
+        }
+        else {
+            MsgBox, 16, Error, opening program
+        }
+    }
+}
+
+
+_runFirefox(cmd:="") {
+    program := "C:\Program Files\Firefox Developer Edition\firefox.exe"
+    _program(program,cmd)
+}
+
+_runChrome(cmd:="") {
+    program := "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+    _program(program,cmd)
+}
+
+
+devDesktop(){
+    
+    ;----------- start firefox
+    _runFirefox("https://usepanda.com/app/#/")
+        
+    WinActivate, ahk_class Firefox
+    WinWait,Firefox
+    WinGet, original, , A
+    WinMove, Firefox, , 1920, 480, 1080, 1440
+    Send {ctrl down}{shift down}{c down},{ctrl up}{shift up}{c up} 
+    Sleep 100
+    WinActivate, ahk_class Developer Tools
+    WinWait,Developer Tools
+    WinMove, Developer Tools, , 1920, 0, 1080, 460
+    ;----------- end firefox
+
+    ;----------- start Chrome
+    _runChrome()
+    WinActivate, ahk_class Google
+    WinWait,Google
+    WinMove, Google, , 0, 0, 1080, 1440
+    WinMaximize, Google
+    ;----------- start Chrome
+    
+    _program("C:\Add-on-programs\Microsoft VS Code\Code.exe")
+    _program("C:\Add-on-programs\Git\git-bash.exe")
+    WinActivate, ahk_class MINGW64
+    WinWait,MINGW64
+    WinMove, MINGW64, , -1080, -540, 1080, 450
+
+}
+
+scheduleDesktop(){
+    ;----------- start Chrome
+    _runChrome("https://mail.google.com --new-window")
+    WinActivate, ahk_class Gmail
+    WinWait,Gmail
+    WinMove, Gmail, , 0, 0, 1080, 1440
+    WinMaximize, Gmail
+    _runChrome("https://outlook.com")
+     
+}
+
+notesDesktop(){
+    ;----------- start Chrome
+    _runChrome("https://keep.google.com --new-window")
+    WinActivate, ahk_class Google
+    WinWait,Google
+    WinMove, Google, , 0, 0, 1080, 1440
+    WinMaximize, Google
+    ;_runChrome("https://outlook.com")
+     
+}
+
+doSetup(){
+    devDesktop()
+    Sleep 400
+    SwitchToDesktop(2)
+    Sleep 200
+    scheduleDesktop()
+    Sleep 400
+    SwitchToDesktop(3)
+    Sleep 200
+    notesDesktop()
+}
+doSetup()
