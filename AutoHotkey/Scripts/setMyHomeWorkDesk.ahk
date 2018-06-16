@@ -688,14 +688,24 @@ devDesktop(){
     WinWait,Google
     WinMove, Google, , 0, 0, 1080, 1440
     WinMaximize, Google
-    ;----------- start Chrome
+    ;----------- end Chrome
     
+    ;----------- start Vs code
     _program("C:\Add-on-programs\Microsoft VS Code\Code.exe")
+    WinActivate, ahk_class Visual
+    WinWait,Visual
+    WinMove, Visual, , 0, 0, 1080, 1440
+    WinMaximize, Visual
+    ;----------- end Vs code
+
+    ;----------- start CMD
     _program("C:\Add-on-programs\Git\git-bash.exe")
     WinActivate, ahk_class MINGW64
     WinWait,MINGW64
     WinMove, MINGW64, , -1080, -540, 1080, 450
-
+    ;----------- end CMD
+    
+    Return
 }
 
 scheduleDesktop(){
@@ -706,7 +716,7 @@ scheduleDesktop(){
     WinMove, Gmail, , 0, 0, 1080, 1440
     WinMaximize, Gmail
     _runChrome("https://outlook.com")
-     
+    Return 
 }
 
 notesDesktop(){
@@ -717,7 +727,7 @@ notesDesktop(){
     WinMove, Google, , 0, 0, 1080, 1440
     WinMaximize, Google
     ;_runChrome("https://outlook.com")
-     
+    Return 
 }
 
 doSetup(){
@@ -730,5 +740,6 @@ doSetup(){
     SwitchToDesktop(3)
     Sleep 200
     notesDesktop()
+    Return
 }
 doSetup()
