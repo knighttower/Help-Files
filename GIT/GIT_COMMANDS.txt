@@ -21,9 +21,9 @@ php artisan make:migration
 #-----------------
 
 #git flow
-git start feature/CBB-
+git start feature/XXX
 git finish
-git start prodfix/CBB-
+git start prodfix/XXXX
 
 #for local dev tasks
 git merge development
@@ -35,10 +35,10 @@ git checkout -- .
 
 
 #branch name
-git checkout CBB-
+git checkout XXXX
 
 #delete a branch
-git branch -D CBB-
+git branch -D XXX
 
 #delete bach history
 history -c
@@ -88,13 +88,21 @@ touch README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin git@github.com:fdgcreative/freshfoodfactor.git
+git remote add origin git@github.com:xxxxxxxxxxxxxxxxxx.git
 git push -u origin master
 
 #push 
-git remote add origin git@github.com:fdgcreative/freshfoodfactor.git
+git remote add origin git@github.com:xxxxxxxxxxxxxxxx.git
 git push -u origin master
 git push origin master
+
+#change user (global)
+git config --global user.name "FIRST_NAME LAST_NAME"
+git config --global user.email "MY_NAME@example.com"
+
+#change user (local)
+git config user.name "FIRST_NAME LAST_NAME"
+git config user.email "MY_NAME@example.com"
 
 #abort merge
 git merge --abort
@@ -116,8 +124,8 @@ git revert <commit-of-first-revert>
 git checkout branch_name_here
 
 #clone
-git@github.com:fdgcreative/freshfoodfactor.git
-git clone git@github.com:fdgcreative/Columbia_Residential.git folder-name
+git@github.com:xxxxxxxxxxxxxx.git
+git clone git@github.com:xxxxxxxxxxxxxx.git folder-name
 
 collaborators
 
